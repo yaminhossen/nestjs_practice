@@ -25,28 +25,28 @@ export class UsersController {
 
     // get single user /users/:id
     @Get(":id")
-    getOneNinja(@Param('id') id:number) {
-        return this.usersService.getUser(id);
+    getOneNinja(@Param('id') id:string) {
+        return this.usersService.getUser(+id);
     }
 
     // post /users
     @Post()
     createUser(@Body() createUserDto: CreateUserDto){
-        return  this.usersService.create(createUserDto);
+        return  this.usersService.createUser(createUserDto);
     }
 
     
     // update /users/:id
-    // @Put()
-    // updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    //     return this.usersService.update(+id, updateUserDto);
-    // }
+    @Put(':id')
+    updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+        return this.usersService.updateUser(+id, updateUserDto);
+    }
 
 
     // delete /users/:id
-    @Delete()
-    removeUser(){
-        return {}
+    @Delete(':id')
+    removeUser(@Param('id') id: string){
+        return this.usersService.removeUser(+id)
     }
 }
 

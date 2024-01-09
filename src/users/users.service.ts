@@ -25,23 +25,40 @@ export class UsersService {
         }
         return user;
     }
-    create(createUserDto: CreateUserDto) {
-        return 'This action adds a new User got it';
+    createUser( createUserDto: CreateUserDto) {
+        const newUser = {
+            ...CreateUserDto,
+            id: Date.now(),
+        };
+        this.users.push(newUser);
+        return newUser;
+    }
+    updateUser(id: number, updateUserDto: UpdateUserDto) {
+       this.users = this.users.map((user) =>{
+        if(user.id === id){
+            return { ...user, ...updateUserDto}
+        }
+        return user;
+       })
+       return this.getUser(id);
     }
 
-    findAll() {
-        return `This action returns all Users`;
+    removeUser(id: number) {
+        const toBeRemoved = this.getUser(id);
+        this.users = this.users.filter((user) => user.id !== id);
+        return toBeRemoved;
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} User`;
-    }
 
-    update(id: number, updateUserDto: UpdateUserDto) {
-        return `This action updates a #${id} User`;
-    }
+    // findAll() {
+    //     return `This action returns all Users`;
+    // }
 
-    remove(id: number) {
-        return `This action removes a #${id} User`;
-    }
+    // findOne(id: number) {
+    //     return `This action returns a #${id} User`;
+    // }
+
+   
+
+    
 }
