@@ -26,12 +26,12 @@ export class UsersService {
         return user;
     }
     createUser( createUserDto: CreateUserDto) {
-        const newUser = {
-            ...CreateUserDto,
-            id: Date.now(),
-        };
-        this.users.push(newUser);
-        return newUser;
+        // const newUser = {
+        //     ...CreateUserDto,
+        //     id: Date.now(),
+        // };
+        this.users.push(createUserDto);
+        return createUserDto;
     }
     updateUser(id: number, updateUserDto: UpdateUserDto) {
        this.users = this.users.map((user) =>{

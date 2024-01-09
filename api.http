@@ -9,5 +9,9 @@ GET http://localhost:3000/users/2 HTTP/1.1
 
 ###
 POST http://localhost:3000/users HTTP/1.1
-
- 
+# Content-Type: application/json"
+# {
+#     "id": "2",
+#     "name": "userss",
+#     "gun": "muster2"
+# }
